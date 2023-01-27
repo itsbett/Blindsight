@@ -24,5 +24,6 @@ class MainActivity : AppCompatActivity() {
         rolld6.setOnClickListener {
             rollResults.text = diceRoller.roll("1d6").toString()
         }
+        //A comment to test
     }
 }
