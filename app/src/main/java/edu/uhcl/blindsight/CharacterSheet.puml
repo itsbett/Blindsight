@@ -1,0 +1,252 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+CharacterSheet "1    " o-- "1    " Attributes
+CharacterSheet "1  " o-- "1    " SavingThrows
+SavingThrows "1    " o-- "1..*" SavingThrow
+Attributes "1   " o-- "1..*" Attribute
+Skills "1    " o-- "1..*" Skill
+CharacterSheet "1    " o-- "1   " Skills
+CharacterSheet "1    " o-- "1    " ArmorClass
+Account  "1..*" o-- "1   " CharacterSheets
+CharacterSheets "1    " o-- "1    " CharacterSheet
+CharacterSheet "1   " o-- "1   " HitDice
+CharacterSheet "1   " o-- "1   " Actions
+CharacterSheet "1   " o-- "1   " BonusActions
+CharacterSheet "1   " o-- "1   " Reactions
+CharacterSheet "1   " o-- "1   " DeathSaves
+CharacterSheet "1   " o-- "1   " KnownSpells
+CharacterSheet "1   " o-- "1   " SpellSlots
+CharacterSheet "1   " o-- "1   " Inventory
+SpellList "1" o-- "1..*" Spell
+KnownSpells "1   " o-- "1..*" Spell
+Inventory "1  " o-- "1..*" Item
+
+class Account {
+String userName
+String password
+
+getCharacterSheets()
+}
+
+class CharacterSheets {
+Key name
+Value Object
+
+addCharacterSheet()
+}
+class CharacterSheet {
+String name
+int level
+int maxHP
+int currentHP
+int tempHP
+int tempMaxHP
+int experiencePoints
+String race
+String background
+String playerName
+String alignment
+
+
+Object[] attributes
+Object[] feats
+Object[] savingThrows
+Object[] featuresAndTraits
+Object ArmorClass
+
+
+newCharacter()
+levelUp()
+rollDeathSave() : int
+rollSavingThrow() : int
+rollAttack() : int[]
+performShortRest()
+performLongRest()
+castSpell()
+repeatDiceRoll(Map<String, Integer> rollsToMake) : List<Integer>
+
+}
+
+class FeaturesAndTraits {
+Key String
+Value Object
+}
+
+class FeatOrTrait {
+String name
+String fotDescription
+Method[] requirementsToMeet
+Method[] changesToCharacterSheet
+
+checkRequirements(Method[]) : bool
+}
+class ArmorClass {
+int value
+int armorValue
+int additionalValues
+
+}
+class Attribute {
+String name
+int value
+int modifier
+int additionalValues
+
+setters()
+getters()
+}
+
+class Attributes {
+Key name
+Value Object
+addAttribute()
+}
+class SavingThrows {
+Key name
+Value Object
+
+addSavingThrow()
+}
+
+class SavingThrow {
+String name
+int value
+int additionalValues
+bool proficient
+
+getValue()
+}
+
+class Skills {
+Key name
+Value Object
+
+addSkill()
+}
+
+class Skill {
+String name
+int value
+int additionalValues
+bool proficient
+
+setters()
+getters()
+}
+
+class HitDice {
+int diceValue
+int remainingHitDice
+int maxHitDice
+int additionalDice
+
+restoreHitDice()
+}
+
+class DeathSaves {
+int successes
+int failures
+
+}
+
+class Actions {
+Key name
+Method thingToPerform
+
+addAction()
+}
+
+class BonusActions {
+Key name
+Method thingToPerform
+
+addBonusAction()
+}
+
+class Reactions {
+Key name
+Method thingToPerform
+
+addReaction()
+}
+
+class KnownSpells {
+Key String
+Value Object
+}
+
+class Spell {
+String name
+String school
+String spellDescription
+String diceToRoll
+String castingTime
+String duration
+String range
+String components
+int spellLevel
+bool canUpcast
+String upCast
+}
+
+class SpellList {
+Key String
+Value Object
+}
+
+class SpellSlots {
+int[][] maxSpellSlots
+int[][] availableSpellSlots
+}
+
+class Inventory {
+Key String
+Value Object
+}
+
+class Item {
+String itemType
+String itemDescription
+String container
+
+int weight
+int cost
+int quantity
+}
+
+enum SpellSchool {
+CON
+NEC
+EVO
+ABJ
+TRA
+DIV
+ENC
+ILL
+
+SpellSchool(String name)
+name() : String name
+}
+
+enum ItemType {
+WEAPON
+ARMOR
+SHIELD
+POTION
+AMMUNITION
+RING
+ROD
+SCROLL
+STAFF
+WAND
+WONDROUS_ITEM
+TOOL
+ADVENTURING_GEAR;
+
+
+ItemType(String name)
+name() : String name
+}
+@enduml

@@ -22,7 +22,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Roll Text Input"
+        android:text="@string/roll_text_input"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -44,14 +44,16 @@
         app:layout_constraintHorizontal_bias="0.208"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.623" />
+        app:layout_constraintVertical_bias="0.623"
+        android:contentDescription="@string/roll_1d20" />
 
     <EditText
         android:id="@+id/stringRoll"
         android:layout_width="245dp"
-        android:layout_height="42dp"
-        android:maxLines="1"
+        android:layout_height="48dp"
         android:inputType="text"
+        android:maxLines="1"
+        android:importantForAutofill="no"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -68,13 +70,15 @@
         app:layout_constraintHorizontal_bias="0.74"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.623" />
+        app:layout_constraintVertical_bias="0.623"
+        android:contentDescription="@string/roll_1d6" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/typeInRoll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type in roll"
+        android:text="@string/type_in_roll"
+        android:labelFor="@+id/stringRoll"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"

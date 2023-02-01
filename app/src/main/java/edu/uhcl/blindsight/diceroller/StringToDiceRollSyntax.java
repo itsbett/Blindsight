@@ -1,4 +1,4 @@
-package edu.uhcl.blindsight;
+package edu.uhcl.blindsight.diceroller;
 
 public class StringToDiceRollSyntax {
     /*

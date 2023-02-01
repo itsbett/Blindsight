@@ -1,4 +1,4 @@
-package edu.uhcl.blindsight;
+package edu.uhcl.blindsight.diceroller;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -9,7 +9,7 @@ public class StringToDiceRoll {
      */
     public static int roll(int dice, int sides) {
         int total = 0;
-        int roll = 0;
+        int roll;
         if (sides<=1) {
             throw new IllegalArgumentException("The sides of your dice need more than 1 side!");
         }
@@ -87,11 +87,22 @@ public class StringToDiceRoll {
                     while (ch >= 'a' && ch <= 'z') nextChar();
                     String func = str.substring(startPos, this.pos);
                     x = parseFactor();
-                    if (func.equals("sqrt")) x = (int) Math.sqrt(x);
-                    else if (func.equals("sin")) x = (int) Math.sin(Math.toRadians(x));
-                    else if (func.equals("cos")) x = (int) Math.cos(Math.toRadians(x));
-                    else if (func.equals("tan")) x = (int) Math.tan(Math.toRadians(x));
-                    else throw new RuntimeException("Unknown function: " + func);
+                    switch (func) {
+                        case "sqrt":
+                            x = (int) Math.sqrt(x);
+                            break;
+                        case "sin":
+                            x = (int) Math.sin(Math.toRadians(x));
+                            break;
+                        case "cos":
+                            x = (int) Math.cos(Math.toRadians(x));
+                            break;
+                        case "tan":
+                            x = (int) Math.tan(Math.toRadians(x));
+                            break;
+                        default:
+                            throw new RuntimeException("Unknown function: " + func);
+                    }
                 } else {
                     throw new RuntimeException("Unexpected: " + (char)ch);
                 }

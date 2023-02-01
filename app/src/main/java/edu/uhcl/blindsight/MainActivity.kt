@@ -6,19 +6,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
+import edu.uhcl.blindsight.diceroller.DiceRoller
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var diceRoller = DiceRoller()
-        val roll = diceRoller.roll("1d6")
+        val diceRoller = DiceRoller()
         setContentView(R.layout.activity_main)
 
         val rolld20: ImageButton = findViewById(R.id.imageButton2)
         val rolld6: ImageButton = findViewById(R.id.imageButton3)
-        val stringRoller: Button = findViewById(R.id.button);
+        val stringRoller: Button = findViewById(R.id.button)
         val rollResults: TextView = findViewById(R.id.displayRoll)
         val stringInput: EditText = findViewById(R.id.stringRoll)
 

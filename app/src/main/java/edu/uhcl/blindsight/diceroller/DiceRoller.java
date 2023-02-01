@@ -1,9 +1,9 @@
-package edu.uhcl.blindsight;
+package edu.uhcl.blindsight.diceroller;
 
 import org.jetbrains.annotations.NotNull;
 
 public class DiceRoller {
-    @NotNull
+
     public int roll(@NotNull String str) {
         if (StringToDiceRollSyntax.hasCorrectSyntax(str)) { // checks syntax
             return StringToDiceRoll.eval(str); // Parses and computes mathematics

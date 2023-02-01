@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Blindsight</string>
+    <string name="type_in_roll">Type in roll</string>
+    <string name="roll_text_input">Roll Text Input</string>
+    <string name="roll_1d6">Roll 1d6</string>
+    <string name="roll_1d20">Roll 1d20</string>
 </resources>

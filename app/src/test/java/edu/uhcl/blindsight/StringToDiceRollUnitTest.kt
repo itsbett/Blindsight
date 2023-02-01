@@ -1,5 +1,6 @@
 package edu.uhcl.blindsight
 
+import edu.uhcl.blindsight.diceroller.DiceRoller
 import org.junit.Test
 
 import org.junit.Assert.*
