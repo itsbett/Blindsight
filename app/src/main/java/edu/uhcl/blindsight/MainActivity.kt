@@ -34,5 +34,6 @@ class MainActivity : AppCompatActivity() {
 
         ///This is some new shit to push.
         ///I want to die.
+        // door dash is to expensive
     }
 }
