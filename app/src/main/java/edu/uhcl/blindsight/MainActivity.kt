@@ -37,5 +37,7 @@ class MainActivity : AppCompatActivity() {
         // food now
         ///im hungry.
         ///Me too
+        ///Do you know anyone named Leslic
+
     }
 }
