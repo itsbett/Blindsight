@@ -31,5 +31,7 @@ class MainActivity : AppCompatActivity() {
             rollResults.text = diceRoller.roll(stringInput.text.toString()).toString()
         }
         //A comment to test
+
+        ///This is some new shit to push.
     }
 }

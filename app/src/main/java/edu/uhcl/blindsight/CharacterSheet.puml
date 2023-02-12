@@ -19,9 +19,13 @@ CharacterSheet "1   " o-- "1   " DeathSaves
 CharacterSheet "1   " o-- "1   " KnownSpells
 CharacterSheet "1   " o-- "1   " SpellSlots
 CharacterSheet "1   " o-- "1   " Inventory
+CharacterSheet "1   " o-- "1   " FeaturesAndTraits
 SpellList "1" o-- "1..*" Spell
 KnownSpells "1   " o-- "1..*" Spell
 Inventory "1  " o-- "1..*" Item
+FeaturesAndTraits "1   " o-- "1..*" FeatOrTrait
+FeatOrTraitList "1   " o-- "1..*" FeatOrTrait
+
 
 class Account {
 String userName
@@ -49,12 +53,6 @@ String background
 String playerName
 String alignment
 
-
-Object[] attributes
-Object[] feats
-Object[] savingThrows
-Object[] featuresAndTraits
-Object ArmorClass
 
 
 newCharacter()
@@ -123,7 +121,6 @@ class Skills {
 Key name
 Value Object
 
-addSkill()
 }
 
 class Skill {
@@ -191,6 +188,11 @@ bool canUpcast
 String upCast
 }
 
+class FeatOrTraitList {
+Key String
+Value Object
+}
+
 class SpellList {
 Key String
 Value Object
@@ -230,6 +232,16 @@ SpellSchool(String name)
 name() : String name
 }
 
+class Biography {
+String age
+String height
+String weight
+String eyes
+String skin
+String hair
+
+
+}
 enum ItemType {
 WEAPON
 ARMOR
