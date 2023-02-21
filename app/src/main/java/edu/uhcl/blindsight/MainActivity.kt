@@ -11,7 +11,6 @@ import edu.uhcl.blindsight.diceroller.DiceRoller
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
         val diceRoller = DiceRoller()
         setContentView(R.layout.activity_main)
 
@@ -30,14 +29,6 @@ class MainActivity : AppCompatActivity() {
         stringRoller.setOnClickListener {
             rollResults.text = diceRoller.roll(stringInput.text.toString()).toString()
         }
-        //A comment to test
-
-        ///This is some new shit to push.
-        ///I want to die.
-        // food now
-        ///im hungry.
-        ///Me too
-        ///Do you know anyone named Leslic
 
     }
 }

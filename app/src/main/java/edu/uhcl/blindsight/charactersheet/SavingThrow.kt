@@ -1,15 +1,10 @@
 package edu.uhcl.blindsight.charactersheet
 
-class SavingThrow {
-    var additionalValues: Int
-    var value: Int
-    var name: String
+class SavingThrow(
+    var name: String,
+    var value: Int,
+    var additionalValues: Int,
     var proficient: Boolean
+) {
 
-    constructor(name: String, value: Int, additionalValues: Int, proficient: Boolean){
-        this.name = name
-        this.value = value
-        this.additionalValues = additionalValues
-        this.proficient = proficient
-    }
 }
