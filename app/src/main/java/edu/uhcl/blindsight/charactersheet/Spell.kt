@@ -1,5 +1,8 @@
 package edu.uhcl.blindsight.charactersheet
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class SpellItem(
     val casting_time: String,
     val classes: List<String>,
