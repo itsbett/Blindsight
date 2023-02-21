@@ -92,8 +92,6 @@ int value
 int modifier
 int additionalValues
 
-setters()
-getters()
 }
 
 class Attributes {
@@ -129,8 +127,6 @@ int value
 int additionalValues
 bool proficient
 
-setters()
-getters()
 }
 
 class HitDice {
