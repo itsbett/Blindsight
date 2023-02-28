@@ -1,7 +1,11 @@
 package edu.uhcl.blindsight.charactersheet
 
+import edu.uhcl.blindsight.Driver
+
 fun main () {
-    var strength = Attribute("Strength", 18, 0);
-    println("Your skill is is " + strength.name + "\nIt's modifier is "+ strength.modifier + "\nand its value is " + strength.value)
+    var driver = Driver()
+
+    driver.getSpell()
+
 
 }

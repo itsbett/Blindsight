@@ -1,6 +1,6 @@
 package edu.uhcl.blindsight.charactersheet
 
-
+/*
 fun main () {
     var spell = Spell(
         "Magic Missle",
@@ -15,4 +15,4 @@ fun main () {
         true,
         "maybe")
     println("Your spell " + spell.spellname + " " + "Dice to roll is " + spell.DiceToRoll)
-}
+}*/
