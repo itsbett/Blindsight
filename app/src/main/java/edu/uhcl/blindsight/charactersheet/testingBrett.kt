@@ -18,4 +18,5 @@ fun main () {
 
     var charisma = Attribute("Charisma", 18, 0);
     println("Your skill is is " + charisma.name + "\nIt's modifier is "+ charisma.modifier + "\nand its value is " + charisma.value)
+
 }

@@ -2,15 +2,8 @@ package edu.uhcl.blindsight
 
 import android.app.Application
 import edu.uhcl.blindsight.charactersheet.Spell
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.KotlinModule
-import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import com.fasterxml.jackson.module.kotlin.readValue
-import edu.uhcl.blindsight.charactersheet.Movie
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import java.io.File
 
 
 class Driver {
