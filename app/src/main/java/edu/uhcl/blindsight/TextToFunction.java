@@ -52,70 +52,23 @@ public class TextToFunction {
             //If the string contains 'Saving' and 'Throw', then get the attribute from the string and execute the correct saving throw method
             else if (Arrays.asList(inputStringArray).contains("SAVING") && Arrays.asList(inputStringArray).contains("THROW")) {
                 String attributeToRoll = getAttributeFromString(inputStringArray);
-                switch (attributeToRoll) {
-                    case "STRENGTH":
-                        //Roll Strength Saving Throw
-                        break;
-                    case "DEXTERITY":
-                        //Roll Dexterity Saving Throw
-                        break;
-                    case "CONSTITUTION":
-                        //Roll Constitution Saving Throw
-                        break;
-                    case "INTELLIGENCE":
-                        //Roll Intelligence Saving Throw
-                        break;
-                    case "WISDOM":
-                        //Roll Wisdom Saving Throw
-                        break;
-                    case "CHARISMA":
-                        //Roll Charisma Saving Throw
-                        break;
+                    //characterSheet.SavingThrows[attributeToRoll].roll();
                 }
             }
-            //If the string contains 'CHECK', then check if the string contains an attribute
-            else if (Arrays.asList(inputStringArray).contains("CHECK")) {
-                String attributeToRoll = getAttributeFromString(inputStringArray);
+        //If the string contains 'CHECK', then check if the string contains an attribute
+        else if (Arrays.asList(inputStringArray).contains("CHECK")) {
+            String attributeToRoll = getAttributeFromString(inputStringArray);
 
-                //If the string is not 'NONE', then roll the corresponding check
-                if (!attributeToRoll.equals("NONE")) {
-                    switch (attributeToRoll) {
-                        case "STRENGTH":
-                            //Roll Strength Check
-                            break;
-                        case "DEXTERITY":
-                            //Roll Dexterity Check
-                            break;
-                        case "CONSTITUTION":
-                            //Roll Constitution Check
-                            break;
-                        case "INTELLIGENCE":
-                            //Roll Intelligence Check
-                            break;
-                        case "WISDOM":
-                            //Roll Wisdom Saving Check
-                            break;
-                        case "CHARISMA":
-                            //Roll Charisma Saving Check
-                            break;
-                    }
-                }
-                //Roll a skill check
-                else {
-                    String skillToRoll = getSkillFromString(inputStringArray);
-                    switch (skillToRoll) {
-                        case "ACROBATICS":
-                            //Roll Acrobatics Check
-                            break;
-                        case "ANIMAL HANDLING":
-                            //Roll Animal Handling Check
-                            break;
-                        case "ARCANA":
-                            //Roll Arcana check
-                            break;
-                        //ETC
-                    }
-                }
+            //If the string is not 'NONE', then roll the corresponding check
+            if (!attributeToRoll.equals("NONE")) {
+                //characterSheet.abilityChecks[attributeToRoll].roll();
+            }
+
+            //Roll a skill check
+            else {
+                String skillToRoll = getSkillFromString(inputStringArray);
+                //characterSheet.skillChecks[skillToRoll].roll();
+            }
             } else if (inputStringArray[0].equals("ATTACK")) {
                 //Attack with a weapon function
             } else if (inputStringArray[0].equals("CAST")) {
@@ -129,4 +82,4 @@ public class TextToFunction {
             }
         }
     }
-}
+
