@@ -15,6 +15,7 @@ data class CharacterSheet(
     var alignment: String = "",
     var armorClass: ArmorClass = ArmorClass(0,0,0),
     var deathSave: DeathSave = DeathSave(),
+    var characterClass: CharacterClass = CharacterClass(),
 
     var attributes: Map<String, Attribute> = emptyMap<String, Attribute>(),
     var featuresAndTraits: Map<String, Feature> = emptyMap<String, Feature>(),
