@@ -37,6 +37,16 @@ public class TextToFunction {
         return "NONE";
     }
 
+    //This method pulls the number from the input string and returns it
+    public static int getNumFromString(String[] x) {
+        for (String y : x) {
+            try {
+                return Integer.parseInt(y);
+            } catch (NumberFormatException ignored) {}
+        }
+        return -1; //Return -1 if there is no number in the string
+    }
+
     //The main method. Takes inputString from the constructor
     public static void main(String[] args) {
         inputString = inputString.toUpperCase();                //Converts the string to all uppercase for better recognition
@@ -64,22 +74,54 @@ public class TextToFunction {
                 //characterSheet.abilityChecks[attributeToRoll].roll();
             }
 
-            //Roll a skill check
+            //If the string doesn't contain an attribute, then roll a skill check
             else {
                 String skillToRoll = getSkillFromString(inputStringArray);
                 //characterSheet.skillChecks[skillToRoll].roll();
             }
-            } else if (inputStringArray[0].equals("ATTACK")) {
-                //Attack with a weapon function
-            } else if (inputStringArray[0].equals("CAST")) {
-                //Cast a spell function
-            } else if (inputStringArray[0].equals("REMOVE")) {
+        }
+
+        //If the string contains "ATTACK", roll a weapon attack
+        else if (Arrays.asList(inputStringArray).contains("ATTACK")) {
+            //Attack with a weapon function
+        }
+
+        //If the string starts with "CAST", cast a spell
+        else if (inputStringArray[0].equals("CAST")) {
+            //Cast a spell function
+        }
+
+        //If the string contains "REMOVE" and "HP" OR "TAKE" and "DAMAGE", then remove HP
+        else if ((inputStringArray[0].equals("REMOVE") && Arrays.asList(inputStringArray).contains("HP")) ||
+                (Arrays.asList(inputStringArray).contains("TAKE") && Arrays.asList(inputStringArray).contains("DAMAGE"))) {
+            int hpNum = getNumFromString(inputStringArray);
+            if (hpNum == -1) {
+                //Unrecognized number
+            }
+            else {
                 //Remove HP function
-            } else if (inputStringArray[0].equals("ADD")) {
-                //Add HP function
-            } else if (Arrays.asList(inputStringArray).contains("LONG") && Arrays.asList(inputStringArray).contains("REST")) {
-                //Long Rest function
             }
         }
+
+        //If the string contains "ADD" or "HEAL", then add HP
+        else if (inputStringArray[0].equals("ADD") || Arrays.asList(inputStringArray).contains("HEAL")) {
+            int hpNum = getNumFromString(inputStringArray);
+            if (hpNum == -1) {
+                //Unrecognized number
+            }
+            else {
+                //Add HP function
+            }
+        }
+
+        //If the string contains "LONG" and "REST", then complete a long rest
+        else if (Arrays.asList(inputStringArray).contains("LONG") && Arrays.asList(inputStringArray).contains("REST")) {
+            //Long Rest function
+        }
+
+        else {
+            //Unrecognized command
+        }
     }
+}
 
