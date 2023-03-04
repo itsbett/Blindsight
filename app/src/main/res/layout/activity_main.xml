@@ -112,4 +112,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.08" />
 
+    <TextView
+        android:id="@+id/commandTest"
+        android:layout_width="387dp"
+        android:layout_height="37dp"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/typeInRoll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47000003" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

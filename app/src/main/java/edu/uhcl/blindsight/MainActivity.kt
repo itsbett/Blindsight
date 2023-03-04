@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity(), RecognitionListener {
     //Initializing variables to be used by Speech Recognizer functions
     private val permissionCode = 100
     private lateinit var voiceResults: TextView
+    private lateinit var commandTextBox: TextView
     private lateinit var micButton: ImageView
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var recognizerIntent: Intent
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity(), RecognitionListener {
 
         //Speech Recognizer elements
         voiceResults = findViewById(R.id.displayVoiceText)
+        commandTextBox = findViewById(R.id.commandTest)
         micButton = findViewById(R.id.micButton)
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
 
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity(), RecognitionListener {
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "US-en")
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
         recognizerIntent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3)
+        //recognizerIntent.putExtra(RecognizerIntent.EXTRA_BIASING_STRINGS) Not available in API 24...kill me...
 
         //Check for permissions: If microphone permissions are not granted, ask for permission
         if (ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
@@ -104,8 +107,10 @@ class MainActivity : AppCompatActivity(), RecognitionListener {
         val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
         val matchedText: String = matches!![0]
         voiceResults.text = matchedText
-        //voiceResults.text = matches!![0]
         micButton.setImageResource(R.drawable.ic_mic_black_off)
+        val commandTest: String = TextToFunction.readText(matchedText)
+        commandTextBox.text = commandTest
+
     }
 
     override fun onStop() {
