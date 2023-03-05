@@ -84,7 +84,8 @@ public class TextToFunction {
             //Roll a die function
             if (inputString.matches(".*D\\d*") || inputString.matches(".*\\d*D*")) {
                 //Roll natural dice
-                return "Rolling Natural Dice";
+                return ConvertRoll.convertRoll(inputString);
+                //return "Rolling Natural Dice";
             } else {
                 return "Unrecognized Command";
             }
