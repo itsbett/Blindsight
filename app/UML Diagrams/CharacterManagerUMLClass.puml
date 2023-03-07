@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+CharacterManager "1   " o-- "1   " CharacterSheet
+CharacterManager "1   " o-- "1   " DiceRoller
+CharacterManager "1   " o-- "1   " StringToFunction
+
+
+
+class CharacterManager {
+
+newCharacter()
+levelUp()
+rollDeathSave() : int
+rollSavingThrow() : int
+rollAttack() : int[]
+performShortRest()
+performLongRest()
+castSpell()
+saveCharacterSheet()
+loadCharacterSheet()
+repeatDiceRoll(Map<String, Integer> rollsToMake) : List<Integer>
+
+}
+class CharacterSheet {
+String name
+int level
+int maxHP
+int currentHP
+int tempHP
+int tempMaxHP
+int experiencePoints
+String race
+String playerName
+String alignment
+
+}
+
+class StringToFunction {
+
+getStringFromVoiceToString();
+sterilizeStrength();
+sendRequest();
+}
+class DiceRoller {
+rollDice(String) : Int
+}
+@enduml

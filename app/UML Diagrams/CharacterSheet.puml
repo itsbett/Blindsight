@@ -9,8 +9,7 @@ Attributes "1   " o-- "1..*" Attribute
 Skills "1    " o-- "1..*" Skill
 CharacterSheet "1    " o-- "1   " Skills
 CharacterSheet "1    " o-- "1    " ArmorClass
-Account  "1..*" o-- "1   " CharacterSheets
-CharacterSheets "1    " o-- "1    " CharacterSheet
+
 CharacterSheet "1   " o-- "1   " HitDice
 CharacterSheet "1   " o-- "1   " Actions
 CharacterSheet "1   " o-- "1   " BonusActions
@@ -20,11 +19,17 @@ CharacterSheet "1   " o-- "1   " KnownSpells
 CharacterSheet "1   " o-- "1   " SpellSlots
 CharacterSheet "1   " o-- "1   " Inventory
 CharacterSheet "1   " o-- "1   " FeaturesAndTraits
+CharacterSheet "1   " o-- "1   " CharacterClass
+CharacterSheet "1   " o-- "1   " Biography
+CharacterManager "1   " o-- "1   " CharacterSheet
+Account "1   " o-- "1   " CharacterManager
 SpellList "1" o-- "1..*" Spell
 KnownSpells "1   " o-- "1..*" Spell
 Inventory "1  " o-- "1..*" Item
 FeaturesAndTraits "1   " o-- "1..*" FeatOrTrait
 FeatOrTraitList "1   " o-- "1..*" FeatOrTrait
+Item "1   " o-- "1   " ItemType
+Spell "1   " o-- "1   " SpellSchool
 
 
 class Account {
@@ -34,11 +39,20 @@ String password
 getCharacterSheets()
 }
 
-class CharacterSheets {
-Key name
-Value Object
+class CharacterManager {
 
-addCharacterSheet()
+newCharacter()
+levelUp()
+rollDeathSave() : int
+rollSavingThrow() : int
+rollAttack() : int[]
+performShortRest()
+performLongRest()
+castSpell()
+saveCharacterSheet()
+loadCharacterSheet()
+repeatDiceRoll(Map<String, Integer> rollsToMake) : List<Integer>
+
 }
 class CharacterSheet {
 String name
@@ -49,21 +63,12 @@ int tempHP
 int tempMaxHP
 int experiencePoints
 String race
-String background
 String playerName
 String alignment
 
 
 
-newCharacter()
-levelUp()
-rollDeathSave() : int
-rollSavingThrow() : int
-rollAttack() : int[]
-performShortRest()
-performLongRest()
-castSpell()
-repeatDiceRoll(Map<String, Integer> rollsToMake) : List<Integer>
+
 
 }
 
@@ -238,6 +243,17 @@ String hair
 
 
 }
+
+class CharacterClass {
+
+String className
+String classHP
+String proficiency
+List<GameItem> StartingEquipment
+List<LevelBenefit> LevelBenefits
+
+}
+
 enum ItemType {
 WEAPON
 ARMOR

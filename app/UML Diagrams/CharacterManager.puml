@@ -1,0 +1,64 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if (Create new character?) then (true)
+    :createNewCharacterSheet();
+    :Choose a race;
+    if (Choose height and weight?) then (true)
+        :Choose a height
+        Choose a weight;
+    else (false)
+    endif
+    :createBackground();
+    :Choose a name
+    Choose a gender
+    Choose physical traits;
+
+    if (usePregenBackground) then (true)
+        :Select background from player manual;
+    else (false)
+        :*Pick two personality traits
+        *Pick one ideal
+        *Pick one bond
+        *Pick one flaw
+        *Choose feature
+        *Choose two proficiencies (any combination of tool or language)
+        *Choose gear;
+    endif
+
+    :Enter alignment;
+    :determineAbilityScores();
+
+    if (Random?) then (true)
+        :*Roll 6d4, add 3 highest numbers together
+        *Roll 5 more times;
+    (false) elseif (Static array?) then (true)
+        :Take these number 15, 14, 13, 12, 10, 8;
+    (false) elseif (Point buy?) then (true)
+    :pointBuy();
+    else (false)
+    :Choose custom numbers;
+    endif
+    :Assign these points to Strength,
+    Dexterity, Constitution, Intelligence,
+    Wisdom, and Charisma;
+    :*Add modifiers
+    *Add Dexterity modifier to Initiative;
+    :Select a class;
+    if (Choose starting equipment?) then (true)
+    :Choose starting equipment, based on class;
+    else (false)
+    :Roll for gold and buy equipment;
+    endif
+    :*Add your modifiers to each saving throw
+    *Add 2 to each modifier you're proficient with
+    *Set armor class to 10 + Dexterity Modifier + Armor (with restrictions);
+    :saveCharacter();
+    else (false)
+    :loadCharacter();
+    endif
+
+    stop
+
+@enduml
