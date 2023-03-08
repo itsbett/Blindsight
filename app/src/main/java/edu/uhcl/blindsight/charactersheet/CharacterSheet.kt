@@ -18,7 +18,7 @@ data class CharacterSheet(
     var characterClass: CharacterClass = CharacterClass(),
 
     var attributes: Map<String, Attribute> = emptyMap<String, Attribute>(),
-    var featuresAndTraits: Map<String, Feature> = emptyMap<String, Feature>(),
+    var featuresAndTraits: Map<String, FeatOrTrait> = emptyMap<String, FeatOrTrait>(),
     var savingThrows: Map<String, SavingThrow> = emptyMap<String, SavingThrow>(),
     var skills: Map<String, Skill> = emptyMap<String, Skill>(),
     var knownSpells: Map<String, Spell> = emptyMap<String, Spell>()
