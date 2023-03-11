@@ -1,6 +1,8 @@
 package edu.uhcl.blindsight;
 import java.util.Arrays;
 
+import edu.uhcl.blindsight.diceroller.StringToDiceRoll;
+
 public class TextToFunction {
 
     public static String[] wordList(String line) {
@@ -84,7 +86,8 @@ public class TextToFunction {
             //Roll a die function
             if (inputString.matches(".*D\\d*") || inputString.matches(".*\\d*D*")) {
                 //Roll natural dice
-                return ConvertRoll.convertRoll(inputString);
+                String convertedString = ConvertRoll.convertRoll(inputString);
+                return String.valueOf(StringToDiceRoll.eval(convertedString));
                 //return "Rolling Natural Dice";
             } else {
                 return "Unrecognized Command";

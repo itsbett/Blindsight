@@ -1,5 +1,6 @@
 package edu.uhcl.blindsight
 
+import java.util.Locale
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -8,14 +9,17 @@ import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import android.speech.tts.TextToSpeech
 import android.Manifest
+import android.util.Log
 import android.view.MotionEvent
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import edu.uhcl.blindsight.diceroller.DiceRoller
+import org.w3c.dom.Text
 
-class MainActivity : AppCompatActivity(), RecognitionListener {
+class MainActivity : AppCompatActivity(), RecognitionListener,TextToSpeech.OnInitListener {
 
     //Initializing variables to be used by Speech Recognizer functions
     private val permissionCode = 100
@@ -24,6 +28,8 @@ class MainActivity : AppCompatActivity(), RecognitionListener {
     private lateinit var micButton: ImageView
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var recognizerIntent: Intent
+    private var tts: TextToSpeech? = null
+
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -38,22 +44,7 @@ class MainActivity : AppCompatActivity(), RecognitionListener {
         micButton = findViewById(R.id.micButton)
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
 
-
-        val rolld20: ImageButton = findViewById(R.id.imageButton2)
-        val rolld6: ImageButton = findViewById(R.id.imageButton3)
-        val stringRoller: Button = findViewById(R.id.button)
-        val rollResults: TextView = findViewById(R.id.displayRoll)
-        val stringInput: EditText = findViewById(R.id.stringRoll)
-
-        rolld20.setOnClickListener {
-            rollResults.text = diceRoller.roll("1d20").toString()
-        }
-        rolld6.setOnClickListener {
-            rollResults.text = diceRoller.roll("1d6").toString()
-        }
-        stringRoller.setOnClickListener {
-            rollResults.text = diceRoller.roll(stringInput.text.toString()).toString()
-        }
+        tts = TextToSpeech(this,this)
 
         //Create listener and intent for Speech Recognizer
         speechRecognizer.setRecognitionListener(this)
@@ -110,6 +101,7 @@ class MainActivity : AppCompatActivity(), RecognitionListener {
         micButton.setImageResource(R.drawable.ic_mic_black_off)
         val commandTest: String = TextToFunction.readText(matchedText)
         commandTextBox.text = commandTest
+        ttsSpeak(commandTest)
 
     }
 
@@ -128,4 +120,17 @@ class MainActivity : AppCompatActivity(), RecognitionListener {
     override fun onError(p0: Int) {}
     override fun onPartialResults(p0: Bundle?) {}
     override fun onEvent(p0: Int, p1: Bundle?) {}
+
+    //TTS
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val result = tts!!.setLanguage(Locale.US)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS","Error")
+            }
+        }
+    }
+    private fun ttsSpeak(textToSpeak: String) {
+        tts!!.speak(textToSpeak, TextToSpeech.QUEUE_FLUSH, null, "")
+    }
 }
