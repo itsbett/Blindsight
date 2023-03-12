@@ -47,9 +47,9 @@ class CharacterManager {
         val hwinput = readLine()!!
         if (hwinput == "yes") {
             print("please enter height: ")
-            newCharacterSheet.height == readLine()!!
+            currentCharacterSheet.height == readLine()!!
             print("please enter weight ")
-            newCharacterSheet.weight = readLine()!!
+            currentCharacterSheet.weight = readLine()!!
         }
 
         else{
