@@ -48,30 +48,39 @@ class CharacterBuildingInformation {
     public fun generateRaces() {
         var human = CharacterRace(
             "Human",
-            arrayListOf("Strength+1",
+            arrayListOf(
+                "Strength+1",
                 "Dexterity+1",
                 "Constitution+1",
                 "Intelligence+1",
                 "Wisdom+1",
-                "Charisma+!"))
+                "Charisma+!"
+            )
+        )
         characterRaces["HUMAN"] = human
 
         var elf = CharacterRace(
             "Elf",
-            arrayListOf("Dexterity+2",
+            arrayListOf(
+                "Dexterity+2",
                 "Darkvision",
                 "Keen Senses",
                 "Fey Ancestry",
-                "Trance"))
+                "Trance"
+            )
+        )
         characterRaces["ELF"] = elf
 
         var dwarf = CharacterRace(
             "Dwarf",
-            arrayListOf("Constitution+2",
+            arrayListOf(
+                "Constitution+2",
                 "Darkvision",
                 "Dwarven Resilience",
                 "Dwaren Combat Training",
-                "Stonecutting"))
+                "Stonecutting"
+            )
+        )
         characterRaces["DWARF"] = dwarf
     }
 }

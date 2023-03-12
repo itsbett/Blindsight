@@ -32,7 +32,7 @@ class CharacterManager {
         }
     }
 
-    private fun setRace(raceName: String): String {
+    public fun setRace(raceName: String): String {
         val characterRaces = characterBuildingInformation.characterRaces
         if (characterRaces.containsKey(raceName)) {
             currentCharacterSheet.race = characterRaces[raceName]!!
