@@ -1,4 +1,5 @@
 package edu.uhcl.blindsight;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.uhcl.blindsight.diceroller.StringToDiceRoll;
@@ -56,6 +57,7 @@ public class TextToFunction {
             //characterSheet.SavingThrows[attributeToRoll].roll();
             return "Rolling " + attributeToRoll + " Saving Throw";
         }
+
         else if (Arrays.asList(inputStringArray).contains("CHECK")) {
             String attributeToRoll = getAttributeFromString(inputStringArray);
 

@@ -16,6 +16,7 @@ import android.view.MotionEvent
 import android.widget.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import edu.uhcl.blindsight.charactersheet.CharacterManager
 import edu.uhcl.blindsight.diceroller.DiceRoller
 import org.w3c.dom.Text
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity(), RecognitionListener,TextToSpeech.OnIni
     private lateinit var speechRecognizer: SpeechRecognizer
     private lateinit var recognizerIntent: Intent
     private var tts: TextToSpeech? = null
-
+    private var characterManager: CharacterManager = CharacterManager()
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -97,12 +98,14 @@ class MainActivity : AppCompatActivity(), RecognitionListener,TextToSpeech.OnIni
     override fun onResults(results: Bundle?) {
         val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
         val matchedText: String = matches!![0]
+
         voiceResults.text = matchedText
         micButton.setImageResource(R.drawable.ic_mic_black_off)
+
         val commandTest: String = TextToFunction.readText(matchedText)
+
         commandTextBox.text = commandTest
         ttsSpeak(commandTest)
-
     }
 
     override fun onStop() {
