@@ -22,23 +22,23 @@ class CharacterManager {
         return newCharacterSheet;
     }
 
-    public fun setClass(className: String): String {
+    public fun setClass(className: String): Int {
         val characterClasses = characterBuildingInformation.characterClasses
         if (characterClasses.containsKey(className)) {
             currentCharacterSheet.characterClass = characterClasses[className]!!
-            return "You have chosen $className as your class."
+            return 0
         } else {
-            return "We could not find $className"
+            return 1
         }
     }
 
-    public fun setRace(raceName: String): String {
+    public fun setRace(raceName: String): Int {
         val characterRaces = characterBuildingInformation.characterRaces
         if (characterRaces.containsKey(raceName)) {
             currentCharacterSheet.race = characterRaces[raceName]!!
-            return "Class set to $raceName"
+            return 0
         } else {
-            return "We could not find $raceName"
+            return 1
         }
     }
 

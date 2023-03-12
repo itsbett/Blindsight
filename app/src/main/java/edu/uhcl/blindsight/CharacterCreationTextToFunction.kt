@@ -21,8 +21,28 @@ class CharacterCreationTextToFunction {
         inputString = inputString.uppercase(Locale.getDefault()) //Converts the string to all uppercase for better recognition
         val inputStringArray = TextToFunction.wordList(inputString) //Assigns inputString into a String array
         return when(currentStep) {
-            0 -> characterManager.setRace(inputStringArray[0])
-            1 -> characterManager.setClass(inputStringArray[0])
+
+            //CHOOSE RACE
+            0 ->
+            {
+                if (characterManager.setRace(inputStringArray[0]) == 0) {
+                    this.currentStep++
+                    return "Race set to $inputStringArray[0]"
+                } else {
+                    return "Race not found."
+                }
+            }
+
+            //CHOOSE CLASS
+            1 ->
+            {
+                if (characterManager.setClass(inputStringArray[0]) == 0) {
+                    this.currentStep++
+                    return "Class set to $inputStringArray[0]"
+                } else {
+                    return "Class not found."
+                }
+            }
             else -> "error"
         }
     }
