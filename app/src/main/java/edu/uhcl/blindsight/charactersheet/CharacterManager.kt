@@ -37,7 +37,7 @@ class CharacterManager {
         if (hwinput == "yes") {
             print("please enter height: ")
             val height == readLine()!!
-            print("please enter weight")
+            print("please enter weight ")
             val weight = readLine()!!
         }
 
