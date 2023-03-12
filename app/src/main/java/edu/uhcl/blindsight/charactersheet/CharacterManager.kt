@@ -9,6 +9,7 @@ class CharacterManager {
     fun createCharacter(): CharacterSheet {
         var newCharacterSheet = CharacterSheet()
         chooseRace(newCharacterSheet)
+        chooseHeightAndWeight(newCharacterSheet)
         return newCharacterSheet;
     }
 
@@ -26,7 +27,7 @@ class CharacterManager {
          */
     }
 
-    private fun chooseHeightAndWeight() {
+    private fun chooseHeightAndWeight(newCharacterSheet: CharacterSheet) {
         /*
         @TODO: Allow player to choose height and weight. Make it optional.
          */
@@ -36,9 +37,9 @@ class CharacterManager {
         val hwinput = readLine()!!
         if (hwinput == "yes") {
             print("please enter height: ")
-            val height == readLine()!!
+            newCharacterSheet.height == readLine()!!
             print("please enter weight ")
-            val weight = readLine()!!
+            newCharacterSheet.weight = readLine()!!
         }
 
         else{

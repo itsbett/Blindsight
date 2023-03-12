@@ -13,6 +13,8 @@ data class CharacterSheet(
     var race: String = "",
     var playerName: String = "",
     var alignment: String = "",
+    var height: String = "",
+    var weight: String = "",
     var armorClass: ArmorClass = ArmorClass(0,0,0),
     var deathSave: DeathSave = DeathSave(),
     var characterClass: CharacterClass = CharacterClass(),
