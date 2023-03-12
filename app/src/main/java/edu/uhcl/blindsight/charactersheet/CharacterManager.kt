@@ -1,13 +1,20 @@
 package edu.uhcl.blindsight.charactersheet
 
 class CharacterManager {
+    lateinit var currentCharacterSheet: CharacterSheet
 
     constructor() {
 
     }
 
+    /**
+     * This creates a new character that will immediately go through the character creation
+     * process.
+     *@return Returns the New Character sheet, likely to be added to the Account.
+     */
     fun createCharacter(): CharacterSheet {
         var newCharacterSheet = CharacterSheet()
+        this.currentCharacterSheet = newCharacterSheet
         chooseRace(newCharacterSheet)
         chooseHeightAndWeight(newCharacterSheet)
         return newCharacterSheet;
@@ -18,13 +25,16 @@ class CharacterManager {
         @TODO: Insert code that gives player a choice.
         Race should probably be a class that contains modifiers for the charactersheet.
          */
-         newCharacterSheet.race = "Human"
+         currentCharacterSheet.race = "Human"
     }
 
     private fun chooseClass(newCharacterSheet: CharacterSheet) {
         /*
         @TODO: Insert code that gives player a choice.
          */
+        currentCharacterSheet.characterClass.className = "Fighter"
+        currentCharacterSheet.characterClass.classHP = "1d10"
+        currentCharacterSheet.characterClass.
     }
 
     private fun chooseHeightAndWeight(newCharacterSheet: CharacterSheet) {
