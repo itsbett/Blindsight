@@ -40,20 +40,6 @@ class CharacterManager {
         /*
         @TODO: Allow player to choose height and weight. Make it optional.
          */
-
-        print("Would you like to choose height and weight?")
-
-        val hwinput = readLine()!!
-        if (hwinput == "yes") {
-            print("please enter height: ")
-            val height == readLine()!!
-            print("please enter weight")
-            val weight = readLine()!!
-        }
-
-        else{
-        print("ok")
-        }
     }
 
     private fun chooseBackground() {
@@ -66,8 +52,6 @@ class CharacterManager {
         /*
         @TODO: Pick alignment.
          */
-
-
     }
 
     private fun determineAbilityScores() {
@@ -98,15 +82,6 @@ class CharacterManager {
         /*
         @TODO: Easiest. Just declare the stats.
          */
-
-        var strength: Int
-        var dexterity: Int
-        var constitution: Int
-        var intellegence: Int
-        var wisdom: Int
-        var charisma: Int
-
-
     }
 
     private fun chooseStats() {
