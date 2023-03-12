@@ -1,10 +1,14 @@
 package edu.uhcl.blindsight.charactersheet
 
+import edu.uhcl.blindsight.CharacterBuildingInformation
+import edu.uhcl.blindsight.TextToFunction
+
 class CharacterManager {
     lateinit var currentCharacterSheet: CharacterSheet
-
+    val textToFunction: TextToFunction = TextToFunction()
+    private val characterBuildingInformation = CharacterBuildingInformation()
     constructor() {
-
+        characterBuildingInformation.generateAllData()
     }
 
     /**
@@ -15,26 +19,47 @@ class CharacterManager {
     fun createCharacter(): CharacterSheet {
         var newCharacterSheet = CharacterSheet()
         this.currentCharacterSheet = newCharacterSheet
-        chooseRace(newCharacterSheet)
-        chooseHeightAndWeight(newCharacterSheet)
         return newCharacterSheet;
     }
 
-    private fun chooseRace(newCharacterSheet: CharacterSheet) {
+    public fun setClass(className: String): String {
+        val characterClasses = characterBuildingInformation.characterClasses
+        if (characterClasses.containsKey(className)) {
+            currentCharacterSheet.characterClass = characterClasses[className]!!
+            return "You have chosen $className as your class."
+        } else {
+            return "We could not find $className"
+        }
+    }
+
+    private fun setRace(raceName: String): String {
+        val characterRaces = characterBuildingInformation.characterRaces
+        if (characterRaces.containsKey(raceName)) {
+            currentCharacterSheet.race = characterRaces[raceName]!!
+            return "Class set to $raceName"
+        } else {
+            return "We could not find $raceName"
+        }
+    }
+
+    private fun chooseRace() {
         /*
         @TODO: Insert code that gives player a choice.
         Race should probably be a class that contains modifiers for the charactersheet.
-         */
+
          currentCharacterSheet.race = "Human"
+         */
+
     }
 
-    private fun chooseClass(newCharacterSheet: CharacterSheet) {
+    private fun chooseClass() {
         /*
         @TODO: Insert code that gives player a choice.
          */
-        currentCharacterSheet.characterClass.className = "Fighter"
-        currentCharacterSheet.characterClass.classHP = "1d10"
-        currentCharacterSheet.characterClass.
+
+        currentCharacterSheet.characterClass.className = "Fighter";
+        currentCharacterSheet.characterClass.classHP = "1d10";
+
     }
 
     private fun chooseHeightAndWeight(newCharacterSheet: CharacterSheet) {
@@ -133,6 +158,5 @@ class CharacterManager {
         @TODO: Unserialize character sheet.
          */
     }
-
 
 }

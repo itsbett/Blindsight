@@ -10,7 +10,7 @@ data class CharacterSheet(
     var tempHP: Int = 0,
     var tempMaxHP: Int = 0,
     var experiencePoints: Int = 0,
-    var race: String = "",
+    var race: CharacterRace = CharacterRace(),
     var playerName: String = "",
     var alignment: String = "",
     var height: String = "",
