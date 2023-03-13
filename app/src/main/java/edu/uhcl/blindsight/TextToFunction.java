@@ -126,6 +126,10 @@ public class TextToFunction {
             return "Long Rest";
         }
 
+        else if (Arrays.asList(inputStringArray).contains("CREATE") || Arrays.asList(inputStringArray).contains("CREATION")) {
+            return "CHARACTER CREATION";
+        }
+
         else {
             //Unrecognized command
             return "Unrecognized Command";

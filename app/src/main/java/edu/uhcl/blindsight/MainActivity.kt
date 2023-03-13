@@ -18,7 +18,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import edu.uhcl.blindsight.charactersheet.CharacterManager
 import edu.uhcl.blindsight.diceroller.DiceRoller
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity(), RecognitionListener,TextToSpeech.OnInitListener {
 
@@ -98,11 +97,13 @@ class MainActivity : AppCompatActivity(), RecognitionListener,TextToSpeech.OnIni
     override fun onResults(results: Bundle?) {
         val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
         val matchedText: String = matches!![0]
-
         voiceResults.text = matchedText
         micButton.setImageResource(R.drawable.ic_mic_black_off)
 
         val commandTest: String = TextToFunction.readText(matchedText)
+        if (commandTest == "CHARACTER CREATION") {
+            characterCreation(this)
+        }
 
         commandTextBox.text = commandTest
         ttsSpeak(commandTest)
@@ -143,5 +144,10 @@ class MainActivity : AppCompatActivity(), RecognitionListener,TextToSpeech.OnIni
             tts!!.shutdown()
         }
         super.onDestroy()
+    }
+
+    private fun characterCreation (view: MainActivity) {
+        val createCharacter = Intent(this,CharacterCreation::class.java)
+        startActivity(createCharacter)
     }
 }
