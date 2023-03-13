@@ -7,5 +7,7 @@ data class CharacterClass (
     //var equipmentChoices: List<GameItem> = emptyList(),
     var equipmentChoices: Array<Array<String>> = emptyArray(),
     //var levelUpSheet: List<LevelBenefits> = emptyList()
-    var levelUpSheet: String = ""
+    var levelUpSheet: String = "",
+    var subclassLevel: Int,
+    var subclassFeatures: IntArray
     )
