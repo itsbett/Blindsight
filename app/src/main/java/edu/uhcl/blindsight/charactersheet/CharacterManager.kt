@@ -2,12 +2,15 @@ package edu.uhcl.blindsight.charactersheet
 
 import edu.uhcl.blindsight.CharacterBuildingInformation
 import edu.uhcl.blindsight.TextToFunction
+import edu.uhcl.blindsight.diceroller.DiceRoller
 
-class CharacterManager {
+class CharacterManager() {
     lateinit var currentCharacterSheet: CharacterSheet
     val textToFunction: TextToFunction = TextToFunction()
+    val diceRoller: DiceRoller = DiceRoller()
     private val characterBuildingInformation = CharacterBuildingInformation()
-    constructor() {
+
+    init {
         characterBuildingInformation.generateAllData()
     }
 
@@ -40,6 +43,44 @@ class CharacterManager {
         } else {
             return 1
         }
+    }
+
+    public fun setHeight(height: String): Int {
+        currentCharacterSheet.height = height;
+        return 0
+    }
+    public fun setWeight(weight: String): Int {
+        currentCharacterSheet.height = weight;
+        return 0
+    }
+    public fun setBackground (backgroundName: String): Int {
+        val characterBackgrounds = characterBuildingInformation.characterBackgrounds
+        if (characterBackgrounds.containsKey(backgroundName)) {
+            currentCharacterSheet.characterBackground = characterBackgrounds[backgroundName]!!
+            return 0
+        } else {
+            return 1
+        }
+    }
+
+    public fun setAlignment (alignment: String): Int {
+        currentCharacterSheet.alignment = alignment
+        return 0
+    }
+
+    public fun rollForStats(): IntArray {
+        return intArrayOf(
+            diceRoller.rollDropLowest("1d6", 4),
+            diceRoller.rollDropLowest("1d6", 4),
+            diceRoller.rollDropLowest("1d6", 4),
+            diceRoller.rollDropLowest("1d6", 4),
+            diceRoller.rollDropLowest("1d6", 4),
+            diceRoller.rollDropLowest("1d6", 4),
+        )
+    }
+
+    public fun standardArrayForStats(): IntArray {
+        return intArrayOf(15, 14, 13, 12, 10, 8)
     }
 
     private fun chooseRace() {
@@ -102,11 +143,6 @@ class CharacterManager {
          */
     }
 
-    private fun rollForStats() {
-        /*
-        @TODO: standard roll 4d6 and drop lowest 6 times, then choose what number goes where.
-         */
-    }
 
     private fun staticArrayForStats() {
         /*
