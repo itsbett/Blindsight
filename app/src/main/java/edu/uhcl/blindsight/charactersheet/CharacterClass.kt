@@ -8,6 +8,6 @@ data class CharacterClass (
     var equipmentChoices: Array<Array<String>> = emptyArray(),
     //var levelUpSheet: List<LevelBenefits> = emptyList()
     var levelUpSheet: String = "",
-    var subclassLevel: Int,
-    var subclassFeatures: IntArray
+    var subclassLevel: Int = 0,
+    var subclassFeatures: IntArray = intArrayOf(0)
     )
