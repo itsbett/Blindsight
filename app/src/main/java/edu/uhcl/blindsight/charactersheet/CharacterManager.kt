@@ -1,14 +1,12 @@
 package edu.uhcl.blindsight.charactersheet
 
 import edu.uhcl.blindsight.CharacterBuildingInformation
-import edu.uhcl.blindsight.TextToFunction
 import edu.uhcl.blindsight.diceroller.DiceRoller
 
-class CharacterManager() {
-    lateinit var currentCharacterSheet: CharacterSheet
-    val textToFunction: TextToFunction = TextToFunction()
-    val diceRoller: DiceRoller = DiceRoller()
-    private val characterBuildingInformation = CharacterBuildingInformation()
+class CharacterManager {
+    private lateinit var currentCharacterSheet: CharacterSheet
+    private val diceRoller: DiceRoller = DiceRoller()
+    private val characterBuildingInformation: CharacterBuildingInformation = CharacterBuildingInformation()
 
     init {
         characterBuildingInformation.generateAllData()
@@ -20,55 +18,55 @@ class CharacterManager() {
      *@return Returns the New Character sheet, likely to be added to the Account.
      */
     fun createCharacter(): CharacterSheet {
-        var newCharacterSheet = CharacterSheet()
+        val newCharacterSheet = CharacterSheet()
         this.currentCharacterSheet = newCharacterSheet
-        return newCharacterSheet;
+        return newCharacterSheet
     }
 
-    public fun setClass(className: String): Int {
+    fun setClass(className: String): Int {
         val characterClasses = characterBuildingInformation.characterClasses
-        if (characterClasses.containsKey(className)) {
+        return if (characterClasses.containsKey(className)) {
             currentCharacterSheet.characterClass = characterClasses[className]!!
-            return 0
+            0
         } else {
-            return 1
+            1
         }
     }
 
-    public fun setRace(raceName: String): Int {
+    fun setRace(raceName: String): Int {
         val characterRaces = characterBuildingInformation.characterRaces
-        if (characterRaces.containsKey(raceName)) {
+        return if (characterRaces.containsKey(raceName)) {
             currentCharacterSheet.race = characterRaces[raceName]!!
-            return 0
+            0
         } else {
-            return 1
+            1
         }
     }
 
-    public fun setHeight(height: String): Int {
-        currentCharacterSheet.height = height;
+    fun setHeight(height: String): Int {
+        currentCharacterSheet.height = height
         return 0
     }
-    public fun setWeight(weight: String): Int {
-        currentCharacterSheet.height = weight;
+    fun setWeight(weight: String): Int {
+        currentCharacterSheet.height = weight
         return 0
     }
-    public fun setBackground (backgroundName: String): Int {
+    fun setBackground (backgroundName: String): Int {
         val characterBackgrounds = characterBuildingInformation.characterBackgrounds
-        if (characterBackgrounds.containsKey(backgroundName)) {
+        return if (characterBackgrounds.containsKey(backgroundName)) {
             currentCharacterSheet.characterBackground = characterBackgrounds[backgroundName]!!
-            return 0
+            0
         } else {
-            return 1
+            1
         }
     }
 
-    public fun setAlignment (alignment: String): Int {
+    fun setAlignment (alignment: String): Int {
         currentCharacterSheet.alignment = alignment
         return 0
     }
 
-    public fun rollForStats(): IntArray {
+    fun rollForStats(): IntArray {
         return intArrayOf(
             diceRoller.rollDropLowest("1d6", 4),
             diceRoller.rollDropLowest("1d6", 4),
@@ -79,14 +77,14 @@ class CharacterManager() {
         )
     }
 
-    public fun standardArrayForStats(): IntArray {
+    fun standardArrayForStats(): IntArray {
         return intArrayOf(15, 14, 13, 12, 10, 8)
     }
 
     private fun chooseRace() {
         /*
         @TODO: Insert code that gives player a choice.
-        Race should probably be a class that contains modifiers for the charactersheet.
+        Race should probably be a class that contains modifiers for the character sheet.
 
          currentCharacterSheet.race = "Human"
          */
@@ -98,8 +96,8 @@ class CharacterManager() {
         @TODO: Insert code that gives player a choice.
          */
 
-        currentCharacterSheet.characterClass.className = "Fighter";
-        currentCharacterSheet.characterClass.classHP = "1d10";
+        currentCharacterSheet.characterClass.className = "Fighter"
+        currentCharacterSheet.characterClass.classHP = "1d10"
 
     }
 
