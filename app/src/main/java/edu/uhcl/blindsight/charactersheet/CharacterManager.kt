@@ -51,6 +51,19 @@ class CharacterManager {
         currentCharacterSheet.height = weight
         return 0
     }
+    fun setName(name: String): Int {
+        currentCharacterSheet.name = name
+        return 0
+    }
+    fun setGender(gender: String): Int {
+        currentCharacterSheet.gender = gender
+        return 0
+    }
+
+    fun setPhysicalDescription(description: String): Int {
+        currentCharacterSheet.description = description
+        return 0
+    }
     fun setBackground (backgroundName: String): Int {
         val characterBackgrounds = characterBuildingInformation.characterBackgrounds
         return if (characterBackgrounds.containsKey(backgroundName)) {
@@ -67,20 +80,32 @@ class CharacterManager {
     }
 
     fun rollForStats(): IntArray {
-        return intArrayOf(
+        val someIntArray = intArrayOf(
             diceRoller.rollDropLowest("1d6", 4),
             diceRoller.rollDropLowest("1d6", 4),
             diceRoller.rollDropLowest("1d6", 4),
             diceRoller.rollDropLowest("1d6", 4),
             diceRoller.rollDropLowest("1d6", 4),
-            diceRoller.rollDropLowest("1d6", 4),
+            diceRoller.rollDropLowest("1d6", 4)
         )
+        someIntArray.sortDescending()
+        return someIntArray
     }
 
     fun standardArrayForStats(): IntArray {
         return intArrayOf(15, 14, 13, 12, 10, 8)
     }
 
+    fun pointBuy(): IntArray {
+        /*ToDo: We need to find a way to handle this. This will likely be handled in
+           the CharacterCreationTextToFunction*/
+        return intArrayOf(15, 14, 13, 12, 10, 8)
+    }
+    fun setStartingGold(): Int {
+        currentCharacterSheet.money[1] =
+            diceRoller.roll(currentCharacterSheet.characterClass.startingGold)
+        return 0
+    }
     private fun chooseRace() {
         /*
         @TODO: Insert code that gives player a choice.
@@ -112,7 +137,7 @@ class CharacterManager {
         if (hwinput == "yes") {
             print("please enter height: ")
             currentCharacterSheet.height == readLine()!!
-            print("please enter weight ")
+            print("please enn ter weight ")
             currentCharacterSheet.weight = readLine()!!
         }
 

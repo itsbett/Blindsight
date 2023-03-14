@@ -5,7 +5,7 @@ import java.util.*
 
 class CharacterCreationTextToFunction(private var characterManager: CharacterManager) {
     private var currentStep: String = "CHOOSE_RACE"
-
+    private lateinit var stats: IntArray
     private fun wordList(line: String): Array<String?> {
         return line.split(" ".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
     }
@@ -48,35 +48,87 @@ class CharacterCreationTextToFunction(private var characterManager: CharacterMan
 
             "CHOOSE_NAME" ->
             {
-                if (inputStringArray[0]?.let { characterManager.setClass(it) } == 0) {
+                if (inputStringArray[0]?.let { characterManager.setName(it) } == 0) {
                     this.currentStep = "CHOOSE_GENDER"
-                    return "Class set to $inputStringArray[0]"
+                    return "Name set to $inputStringArray[0]"
                 } else {
-                    return "Class not found."
+                    return "Name not set."
                 }
             }
+
             "CHOOSE_GENDER" ->
             {
-                return "Placeholder"
+                if (inputStringArray[0]?.let { characterManager.setGender(it) } == 0) {
+                    this.currentStep = "CHOOSE_PHYSICAL_DESCRIPTION"
+                    return "Gender set to $inputStringArray[0]"
+                } else {
+                    return "Gender not set."
+                }
             }
             "CHOOSE_PHYSICAL_DESCRIPTION" ->
             {
-                return "Placeholder"
+                if (inputStringArray[0]?.let { characterManager.setPhysicalDescription(it) } == 0) {
+                    this.currentStep = "CHOOSE_BACKGROUND"
+                    return "Physical description set to $inputStringArray[0]"
+                } else {
+                    return "Physical description not set."
+                }
             }
             "CHOOSE_BACKGROUND" ->
             {
-                return "Placeholder"
+                if (inputStringArray[0]?.let { characterManager.setBackground(it) } == 0) {
+                    this.currentStep = "CHOOSE_ALIGNMENT"
+                    return "Background set to $inputStringArray[0]"
+                } else {
+                    return "Background not found."
+                }
             }
             "CHOOSE_ALIGNMENT" ->
             {
-                return "Placeholder"
+                if (inputStringArray[0]?.let { characterManager.setAlignment(it) } == 0) {
+                    this.currentStep = "CHOOSE_GENDER"
+                    return "Alignment set to $inputStringArray[0]"
+                } else {
+                    return "Alignment not set."
+                }
             }
+
             "CHOOSE_ABILITY_SCORE_METHOD" ->
             {
+                if (inputStringArray.contains("standard") || inputStringArray.contains("array")) {
+                    this.stats = characterManager.standardArrayForStats()
+                    this.currentStep = "ALLOCATE_ABILITY_SCORES_STANDARD_ARRAY"
+                    return "Using Standard Array. What stat do you want to be fifteen?"
+                } else if (inputStringArray.contains("point") || inputStringArray.contains("buy")) {
+                    this.stats = characterManager.pointBuy()
+                    this.currentStep = "ALLOCATE_ABILITY_SCORES_POINT_BUY"
+                    return "Using Point Buy system. Please finish coding me."
+                } else if (inputStringArray.contains("roll") || inputStringArray.contains("random")) {
+                    this.stats = characterManager.rollForStats()
+                    this.currentStep = "ALLOCATE_ABILITY_SCORES_ROLL"
+                    return "Rolling for stats. You rolled the following: ${this.stats[0]}, ${this.stats[1]}, ${this.stats[2]}," +
+                            "${this.stats[3]}, ${this.stats[4]}, and ${this.stats[5]}"
+                } else if (inputStringArray.contains("custom") || inputStringArray.contains("choose")) {
+                    //ToDo: Point to a loop where they can choose stats.
+                    this.currentStep = "ALLOCATE_ABILITY_SCORES_CUSTOM"
+                    return "Using custom assignment for stats."
+                } else {
+                    return "Was not able to pick method."
+                }
+            }
+            "ALLOCATE_ABILITY_SCORES_STANDARD_ARRAY" ->
+            {
+                //ToDo: give stat name to assign stat array
                 return "Placeholder"
             }
-            "ALLOCATE_ABILITY_SCORES" ->
+            "ALLOCATE_ABILITY_SCORES_POINT_BUY" ->
             {
+                //ToDo: Create elaborate system to point buy
+                return "Placeholder"
+            }
+            "ALLOCATE_ABILITY_SCORES_ROLL" ->
+            {
+                //ToDo: ask which stat they want to assign number to, starting from highest to lowest
                 return "Placeholder"
             }
             "ALLOCATE_ABILITY_SCORES_CUSTOM" ->
