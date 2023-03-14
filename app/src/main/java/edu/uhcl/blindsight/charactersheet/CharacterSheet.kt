@@ -1,6 +1,6 @@
 package edu.uhcl.blindsight.charactersheet
 
-import com.fasterxml.jackson.core.JsonGenerator.Feature
+
 import edu.uhcl.blindsight.CharacterBackground
 
 data class CharacterSheet(
