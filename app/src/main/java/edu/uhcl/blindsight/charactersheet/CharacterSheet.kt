@@ -1,6 +1,7 @@
 package edu.uhcl.blindsight.charactersheet
 
 import com.fasterxml.jackson.core.JsonGenerator.Feature
+import edu.uhcl.blindsight.CharacterBackground
 
 data class CharacterSheet(
     var name: String= "",
@@ -18,7 +19,7 @@ data class CharacterSheet(
     var armorClass: ArmorClass = ArmorClass(0,0,0),
     var deathSave: DeathSave = DeathSave(),
     var characterClass: CharacterClass = CharacterClass(),
-
+    var characterBackground: CharacterBackground = CharacterBackground(),
     var attributes: Map<String, Attribute> = emptyMap<String, Attribute>(),
     var featuresAndTraits: Map<String, FeatOrTrait> = emptyMap<String, FeatOrTrait>(),
     var savingThrows: Map<String, SavingThrow> = emptyMap<String, SavingThrow>(),
