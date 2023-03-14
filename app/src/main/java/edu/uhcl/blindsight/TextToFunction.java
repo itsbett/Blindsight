@@ -1,5 +1,4 @@
 package edu.uhcl.blindsight;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import edu.uhcl.blindsight.diceroller.StringToDiceRoll;
